@@ -1,43 +1,57 @@
-import './App.css';
-import { animedata } from "./data.js"
-import buttons from "./buttons.js"
+import "./App.css";
+import { useState, useEffect } from "react";
+import { getAnimes } from "./services/anime.js";
 
 function Anime() {
-  console.log(animedata)
+  const [animes, setAnimes] = useState([]);
+  const [names, setNames] = useState([]);
+  const [selected, setSelected] = useState({});
+
+  const changeStyle = (e) => {
+    let list = animes.filter((anime) => {
+      return anime.character === e.target.name;
+    });
+
+    setSelected(list[Math.floor(Math.random() * list.length)]);
+  };
+
+  const fetchAnimes = async () => {
+    const data = await getAnimes();
+    setAnimes(data);
+
+    let namelist = {};
+    data.forEach((char) => {
+      namelist[char.character] = (namelist[char.character] || 0) + 1;
+    });
+
+    setNames(Object.keys(namelist));
+  };
+
+  useEffect(() => {
+    fetchAnimes();
+  }, []);
+
   return (
     <>
       <h1>Anime Quote API</h1>
-      <div class="all-quotes">
-      <div class="All-Might">
-        <button id="onebutton" onClick="background1()">All Might</button>
+      <div className="anime-container">
+        <div className="all-quotes">
+          {names.map((name) => (
+            <div className="btn-container" key={name}>
+              <button name={name} onClick={changeStyle}>
+                {name}
+              </button>
+            </div>
+          ))}
+        </div>
+        <div className="char-card">
+          <h2>{selected.character}</h2>
+          <img src={selected.img} alt={selected.character} />
+          <p>{selected.quote}</p>
+        </div>
       </div>
-      <div class="Eraserhead">
-        <button id="twobutton" onClick="background2()">Eraserhead</button>
-      </div>
-      <div class="Shigaraki-Tomura">
-        <button id="threebutton" onClick="background3()">Shigaraki Tomura</button>
-      </div>
-      <div class="Midoriya-Izuku">
-        <button id="fourbutton" onClick="background4()">Midoriya Izuku</button>
-      </div>
-      <div class="Bakugo-Katsuki">
-        <button id="button" onClick="background5()">Bakugo Katsuki</button>
-      </div>
-      <div class="Levi-Ackerman">
-        <button id="button" onClick="background6()">Levi Ackerman</button>
-      </div>
-      <div class="Escanor">
-        <button id="button" onClick="background7()">Escanor</button>
-      </div>
-      <div class="meliodas">
-        <button id="button" onClick="background8()">Meliodas</button>
-      </div>
-      <div class="Naurto-Uzumaki">
-          <button id="button" onClick="background9()">Naruto Uzumaki</button>
-      </div>
-    </div>
     </>
-  )
+  );
 }
 
 export default Anime;

@@ -1,6 +1,12 @@
 html {
   background: url(https://i.pinimg.com/originals/53/87/b1/5387b111b71be1c9067e6dbaf4e905db.jpg);
   background-position: center;
+  background-repeat: no-repeat;
+}
+
+.anime-container{
+  display: flex;
+  justify-content: space-between;
 }
 
 button {
@@ -8,4 +14,43 @@ button {
   border-radius: 12px;
   margin: 15px;
   font-size: 20px;
+  z-index: 1;
+}
+
+h1 {
+  font-size: 40px;
+  color: black;
+}
+
+img {
+  object-fit: contain;
+  height: 30%;
+  width: 30%;
+}
+
+.char-card {
+  z-index: 0;
+  top: 0;
+  left: 0;
+  width: 70%;
+  /* background-color: white; */
+  display: flex;
+  flex-direction: column;
+  column-gap: 1rem;
+  padding: 1rem;
+  height: 100vh;
+  /* justify-content: center; */
+  align-items: center;
+  /* position: relative; */
+  
+}
+
+h2 {
+  font-size: 30px;
+  color: pink;
+}
+
+p {
+  font-size: 30px;
+  color: pink;
 }
