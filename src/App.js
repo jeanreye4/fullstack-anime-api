@@ -44,11 +44,9 @@ function Anime() {
             </div>
           ))}
         </div>
-        <div className="char-card">
           <h2>{selected.character}</h2>
           <img src={selected.img} alt={selected.character} />
           <p>{selected.quote}</p>
-        </div>
       </div>
     </>
   );

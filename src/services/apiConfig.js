@@ -3,7 +3,7 @@ import axios from "axios";
 let apiUrl;
 
 const apiUrls = {
-  production: "https://anime-api.up.railway.app",
+  production: "https://api-anime-product.up.railway.app/anime",
   development: "http://127.0.0.1:3000",
 };
 
