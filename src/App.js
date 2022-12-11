@@ -33,8 +33,10 @@ function Anime() {
 
   return (
     <>
-      <h1>Anime Quote API</h1>
       <div className="anime-container">
+        <div className="header">
+          <h1>Anime Quote API</h1>
+        </div>
         <div className="all-quotes">
           {names.map((name) => (
             <div className="btn-container" key={name}>
@@ -44,9 +46,11 @@ function Anime() {
             </div>
           ))}
         </div>
+        <div className="character-container">
           <h2>{selected.character}</h2>
           <img src={selected.img} alt={selected.character} />
           <p>{selected.quote}</p>
+        </div>
       </div>
     </>
   );
